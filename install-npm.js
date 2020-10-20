@@ -6,7 +6,9 @@ var npmBin
   , node = process.argv[0]
   ;
 
-if (process.env['npm_execpath'] && process.env['npm_execpath'].match(/\/bin\/npm-cli\.js$/)) {
+
+var pattern = path.sep === "/" ? /\/bin\/npm-cli\.js$/ : /\\bin\\npm-cli\.js$/;
+if (process.env['npm_execpath'] && process.env['npm_execpath'].match(pattern)) {
   npmBin = path.resolve(process.env['npm_execpath']);
 }
 
